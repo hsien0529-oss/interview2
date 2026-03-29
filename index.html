@@ -23,9 +23,7 @@
     --key-green: #1B7D3A;
     --key-green-bg: #E0F0E0;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--primary);
@@ -36,7 +34,6 @@
     overflow: hidden;
     user-select: none;
   }
-
   .tab-bar {
     display: flex;
     background: #16304F;
@@ -72,13 +69,11 @@
     background: rgba(255,255,255,0.05);
     color: #B0C8E0;
   }
-
   .main-area {
     flex: 1;
     display: flex;
     overflow: hidden;
   }
-
   .sidebar {
     width: 220px;
     background: #F0F2F7;
@@ -88,7 +83,6 @@
   }
   .sidebar::-webkit-scrollbar { width: 4px; }
   .sidebar::-webkit-scrollbar-thumb { background: #C0C4CE; border-radius: 2px; }
-
   .sidebar .section-label {
     padding: 10px 14px 4px;
     font-size: 10px;
@@ -155,14 +149,12 @@
     margin-left: auto;
     flex-shrink: 0;
   }
-
   .content {
     flex: 1;
     background: #fff;
     overflow-y: auto;
     padding: 0;
   }
-
   .card {
     display: none;
     padding: 36px 48px;
@@ -170,12 +162,10 @@
     animation: fadeIn 0.2s ease;
   }
   .card.active { display: block; }
-
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   .card .category-badge {
     display: inline-block;
     padding: 4px 14px;
@@ -200,7 +190,6 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
   }
-
   .card .question {
     font-size: 28px;
     font-weight: 800;
@@ -208,7 +197,6 @@
     line-height: 1.35;
     margin-bottom: 20px;
   }
-
   .card .who-row {
     display: flex;
     align-items: center;
@@ -229,14 +217,12 @@
     font-size: 14px;
     color: var(--gray);
   }
-
   .card .answer-text {
     font-size: 22px;
     line-height: 1.65;
     color: #333;
     margin-bottom: 28px;
   }
-
   .card .key-box {
     padding: 16px 24px;
     border-radius: 10px;
@@ -261,7 +247,6 @@
     font-size: 24px;
     font-weight: 800;
   }
-
   .card .script-line {
     display: flex;
     gap: 14px;
@@ -295,7 +280,6 @@
     margin-left: 12px;
     font-weight: 600;
   }
-
   .new-badge {
     display: inline-block;
     background: #FFF3E0;
@@ -308,7 +292,6 @@
     vertical-align: middle;
     letter-spacing: 0.5px;
   }
-
   .footer-bar {
     background: #EEF1F8;
     padding: 10px 20px;
@@ -319,7 +302,6 @@
     border-top: 1px solid #D8DCE6;
   }
   .footer-bar strong { color: var(--accent); }
-
   .kbd-hint {
     position: fixed;
     bottom: 44px;
@@ -341,7 +323,6 @@
     font-size: 12px;
     margin: 0 2px;
   }
-
   @media (max-width: 768px) {
     .sidebar { width: 60px; }
     .sidebar .section-label { display: none; }
@@ -357,32 +338,26 @@
 </style>
 </head>
 <body>
-
 <div class="tab-bar">
   <button class="active" onclick="switchTab('main')">Main Script 主稿</button>
   <button onclick="switchTab('followup')">Follow-Up Q&A 追問提示</button>
 </div>
-
 <div class="main-area">
   <div class="sidebar" id="sidebar"></div>
   <div class="content" id="content"></div>
 </div>
-
 <div class="footer-bar">
   <strong>Remember:</strong> Slow down &nbsp;|&nbsp; Look at judges &nbsp;|&nbsp; Pause between sentences &nbsp;|&nbsp; Use data!
 </div>
-
 <div class="kbd-hint">
   <kbd>&uarr;</kbd><kbd>&darr;</kbd> prev/next &nbsp; <kbd>Tab</kbd> switch tab
 </div>
-
 <script>
 const NAME_COLORS = {
   Fiona: 'var(--fiona)', Hayden: 'var(--hayden)', Lucas: 'var(--lucas)',
   Ryan: 'var(--ryan)', Amber: 'var(--amber)', 'Lucas Hsu': 'var(--lucashsu)',
   Everyone: 'var(--everyone)',
 };
-
 const mainScriptData = [
   {
     id: 'm1', num: 'Q1', title: 'Introduction', titleZh: '自我介紹', time: '~45s',
@@ -420,7 +395,7 @@ const mainScriptData = [
     lines: [
       { name: 'Ryan', text: 'First, we study the game rules and scoring system. Then we test different strategies and choose the most stable one. For teamwork matches, we communicate with our alliance and understand their abilities. We prepared six different game plans and practiced all of them many times.' },
       { name: 'Ryan', text: 'For example, when our alliance had only a 20% success rate for building a Y, we changed the strategy and took over that task to improve consistency.' },
-      { name: 'Amber', isNew: true, text: 'For Skills Drive, our goal is 291 points. We split the driving time. The first driver has 35 seconds to finish the Tower Y and Floor Y. The second driver has 25 seconds to stack matches in the floor goal and triangle goal.' },
+      { name: 'Amber', isNew: true, text: 'For Skills Drive, our goal is 291 points. We split the driving time. The first driver has 35 seconds to finish the Standoff Y and Y. The second driver has 25 seconds to stack matches in the floor goal and triangle goal.' },
       { name: 'Amber', isNew: true, text: 'For Skills Autonomous, our goal is 246 points. We use the rule that lets us pick up the robot by hand. After completing two Ys, we quickly bring the robot back to the start and use the Loader to rapidly stack matches.' },
     ],
   },
@@ -437,7 +412,7 @@ const mainScriptData = [
     catColor: 'var(--primary)',
     lines: [
       { name: 'Fiona', isNew: true, text: 'We believe testing is very important. We test our robot many times to find problems. We discovered that dirty rubber bands reduce friction, so we replace them. For structures that easily crash, we use pin connectors instead of screws to make them stronger. We also added guide angles and position limits to make sure the claw is always in the correct spot.' },
-      { name: 'Fiona', isNew: true, text: 'Because we use omni wheels, the robot may slide left and right in autonomous mode and cause errors. So we added support wheels on the sides to reduce sliding and make autonomous more stable.' },
+      { name: 'Fiona', isNew: true, text: 'Because we use omni wheels, the robot may slide left and right in autonomous mode and cause errors. So we added non-slide wheels on the sides to reduce sliding and make autonomous more stable.' },
       { name: 'Amber', isNew: true, text: 'We also designed a positioning structure to make it much more stable when we place a U-shaped object on a stack of two pins.' },
       { name: 'Amber', text: 'We also use slow-motion video to analyze the robot. This helps us find problems more precisely and improve performance.' },
     ],
@@ -477,14 +452,13 @@ const mainScriptData = [
     id: 'm10', num: 'Q10', title: 'Closing', titleZh: '結語＋補充', time: '~90s',
     catColor: 'var(--fiona)',
     lines: [
-      { name: 'Amber', isNew: true, text: 'I want to add about our robot design and improvements. We added a guide under the claw to help stack Pins more easily. But a fixed guide caused problems when placing high towers or in the triangle goal. So we changed it to a pneumatic guide that can open and close.' },
+      { name: 'Amber', isNew: true, text: 'I want to add about our robot design and improvements. We added a guide under the claw to help stack Pins more easily. But a fixed guide caused problems when placing high towers or in the triangle goal. So we changed it to a pneumatic guide that can lift up and down.' },
       { name: 'Lucas', isNew: true, text: 'When we flip 180 degrees or lift three Pins, we found that resistance increases and makes it harder to reach our target angle. So we added rubber bands to provide extra force and help the robot move better.' },
-      { name: 'Hayden', isNew: true, text: 'I want to add about our programming. For gyro correction, we subtract the current angle from the target angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
+      { name: 'Hayden', isNew: true, text: 'I want to add about our programming. For gyro correction, we subtract the target angle from the current angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
       { name: 'Fiona', text: 'Thank you for listening. We are proud of our teamwork, continuous improvement, and engineering process.' },
     ],
   },
 ];
-
 const followUpData = [
   { id: 'f1', num: 'Q1', category: 'EDP', catColor: 'var(--hayden)', question: 'How did you know your design was better?', who: 'Fiona', answer: 'We tested our design many times and compared the results. For example, after we improved our claw, our success rate increased from about 50% to nearly 100%. This showed that our new design was more stable and reliable.', key: '50% → 100%' },
   { id: 'f2', num: 'Q2', category: 'EDP', catColor: 'var(--hayden)', question: 'What would you improve if you had more time?', who: 'Lucas', answer: 'If we had more time, we would improve our robot\'s speed and consistency. Sometimes our robot is fast, but not always stable. We want to make it both fast and reliable by doing more testing and optimizing our design.', key: 'Speed + Consistency' },
@@ -507,32 +481,28 @@ const followUpData = [
   { id: 'f19', num: 'Q19', category: 'TRAP', catColor: 'var(--trap-red)', question: 'How many times did you test?', who: 'Fiona', answer: 'We tested many times. For some designs, we tested more than 20 times to improve stability and performance.', key: '20+ times per design', trap: true },
   { id: 'f20', num: 'Q20', category: 'Closing', catColor: 'var(--primary)', question: 'What makes your team special?', who: 'Everyone', answer: 'Our team is special because we keep improving and never give up. We test a lot, learn from failure, and work well together. That is how we built our current robot.', key: 'Improve + Never give up + Teamwork' },
 ];
-
 // ===== STATE =====
 let currentTab = 'main';
 let currentIndex = 0;
-
 function getData() {
   if (currentTab === 'main') return mainScriptData;
   return followUpData;
 }
-
 function renderSidebar() {
   const sidebar = document.getElementById('sidebar');
   const data = getData();
   let html = '';
   let lastCat = '';
-
   if (currentTab === 'main') {
     html += '<div class="section-label">Main Script 主稿</div>';
     data.forEach((item, i) => {
       const active = i === currentIndex ? ' active' : '';
       const starHtml = item.star ? '<span class="star-badge">KEY</span>' : '';
-      html += `<button class="${active}" onclick="goTo(${i})">
-        <span class="num" style="background:${item.catColor}">${item.num}</span>
-        ${item.title}
-        ${starHtml}
-      </button>`;
+      html += '<button class="' + active + '" onclick="goTo(' + i + ')">' +
+        '<span class="num" style="background:' + item.catColor + '">' + item.num + '</span>' +
+        item.title +
+        starHtml +
+      '</button>';
     });
   } else {
     const categories = [];
@@ -543,67 +513,64 @@ function renderSidebar() {
       }
     });
     categories.forEach(cat => {
-      html += `<div class="section-label">${cat.label}</div>`;
+      html += '<div class="section-label">' + cat.label + '</div>';
       data.forEach((item, i) => {
         if (item.category === cat.label) {
           const active = i === currentIndex ? ' active' : '';
           const trapHtml = item.trap ? '<span class="trap-badge">TRAP</span>' : '';
           const starHtml = item.star ? '<span class="star-badge">KEY</span>' : '';
-          html += `<button class="${active}" onclick="goTo(${i})">
-            <span class="num" style="background:${item.catColor}">${item.num}</span>
-            ${item.question.length > 22 ? item.question.substring(0, 22) + '...' : item.question}
-            ${trapHtml}${starHtml}
-          </button>`;
+          html += '<button class="' + active + '" onclick="goTo(' + i + ')">' +
+            '<span class="num" style="background:' + item.catColor + '">' + item.num + '</span>' +
+            (item.question.length > 22 ? item.question.substring(0, 22) + '...' : item.question) +
+            trapHtml + starHtml +
+          '</button>';
         }
       });
     });
   }
   sidebar.innerHTML = html;
 }
-
 function renderContent() {
   const content = document.getElementById('content');
   const data = getData();
   const item = data[currentIndex];
   let html = '';
-
   if (currentTab === 'main') {
-    html = `<div class="card active">
-      <span class="category-badge" style="background:${item.catColor}">${item.num} &mdash; ${item.titleZh}</span>
-      ${item.star ? '<span class="trap-warning" style="background:var(--accent);animation:none">KEY SLIDE</span>' : ''}
-      <span class="time-hint">${item.time}</span>
-      <h1 class="question" style="margin-top:14px">${item.title}</h1>
-      <div style="border-bottom:1px solid #E8ECF2;margin-bottom:24px"></div>
-      ${item.lines.map(l => `
-        <div class="script-line">
-          <span class="script-name" style="background:${NAME_COLORS[l.name]}">${l.isNew ? '<span class="new-badge">NEW</span>' : ''}${l.name}</span>
-          <span class="script-text">${l.text}</span>
-        </div>
-      `).join('')}
-    </div>`;
+    html = '<div class="card active">' +
+      '<span class="category-badge" style="background:' + item.catColor + '">' + item.num + ' &mdash; ' + item.titleZh + '</span>' +
+      (item.star ? '<span class="trap-warning" style="background:var(--accent);animation:none">KEY SLIDE</span>' : '') +
+      '<span class="time-hint">' + item.time + '</span>' +
+      '<h1 class="question" style="margin-top:14px">' + item.title + '</h1>' +
+      '<div style="border-bottom:1px solid #E8ECF2;margin-bottom:24px"></div>' +
+      item.lines.map(function(l) {
+        return '<div class="script-line">' +
+          '<span class="script-name" style="background:' + NAME_COLORS[l.name] + '">' + (l.isNew ? '<span class="new-badge">NEW</span>' : '') + l.name + '</span>' +
+          '<span class="script-text">' + l.text + '</span>' +
+        '</div>';
+      }).join('') +
+    '</div>';
   } else {
     const isTrap = item.trap;
     const boxClass = isTrap ? 'trap' : 'normal';
     const keyColor = isTrap ? 'var(--trap-red)' : 'var(--key-green)';
-    html = `<div class="card active" ${isTrap ? 'style="background:var(--trap-bg)"' : ''}>
-      <span class="category-badge" style="background:${item.catColor}">${item.category}</span>
-      ${isTrap ? '<span class="trap-warning">TRAP QUESTION</span>' : ''}
-      ${item.star ? '<span class="trap-warning" style="background:var(--accent);animation:none">KEY ANSWER</span>' : ''}
-      <h1 class="question">${item.question}</h1>
-      <div class="who-row">
-        <span class="who-badge" style="background:${NAME_COLORS[item.who] || 'var(--primary)'}">${item.who}</span>
-        <span class="who-label">answers this question</span>
-      </div>
-      <div class="answer-text">${item.answer}</div>
-      <div class="key-box ${boxClass}">
-        <span class="key-label" style="color:${keyColor}">KEY:</span>
-        <span class="key-value" style="color:${keyColor}">${item.key}</span>
-      </div>
-    </div>`;
+    html = '<div class="card active"' + (isTrap ? ' style="background:var(--trap-bg)"' : '') + '>' +
+      '<span class="category-badge" style="background:' + item.catColor + '">' + item.category + '</span>' +
+      (isTrap ? '<span class="trap-warning">TRAP QUESTION</span>' : '') +
+      (item.star ? '<span class="trap-warning" style="background:var(--accent);animation:none">KEY ANSWER</span>' : '') +
+      '<h1 class="question">' + item.question + '</h1>' +
+      '<div class="who-row">' +
+        '<span class="who-badge" style="background:' + (NAME_COLORS[item.who] || 'var(--primary)') + '">' + item.who + '</span>' +
+        '<span class="who-label">answers this question</span>' +
+      '</div>' +
+      '<div class="answer-text">' + item.answer + '</div>' +
+      '<div class="key-box ' + boxClass + '">' +
+        '<span class="key-label" style="color:' + keyColor + '">KEY:</span>' +
+        '<span class="key-value" style="color:' + keyColor + '">' + item.key + '</span>' +
+      '</div>' +
+    '</div>';
   }
   content.innerHTML = html;
 }
-
 function goTo(index) {
   const data = getData();
   currentIndex = Math.max(0, Math.min(index, data.length - 1));
@@ -612,7 +579,6 @@ function goTo(index) {
   const activeBtn = document.querySelector('.sidebar button.active');
   if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
-
 function switchTab(tab) {
   currentTab = tab;
   currentIndex = 0;
@@ -626,7 +592,6 @@ function switchTab(tab) {
   renderSidebar();
   renderContent();
 }
-
 document.addEventListener('keydown', (e) => {
   const data = getData();
   if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
@@ -645,7 +610,6 @@ document.addEventListener('keydown', (e) => {
     goTo(9);
   }
 });
-
 renderSidebar();
 renderContent();
 </script>
