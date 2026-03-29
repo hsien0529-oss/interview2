@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team 6677G - Interview Cue Cards (第四版)</title>
+<title>Team 6677G - Interview Cue Cards (第五版 0329)</title>
 <style>
   :root {
     --primary: #1E3A5F;
@@ -16,6 +16,7 @@
     --lucas: #2E7D32;
     --ryan: #B85C2D;
     --amber: #B82D3E;
+    --lucashsu: #4A6741;
     --everyone: #1E3A5F;
     --trap-red: #CC3333;
     --trap-bg: #FFF0F0;
@@ -36,7 +37,6 @@
     user-select: none;
   }
 
-  /* ===== TOP TAB BAR ===== */
   .tab-bar {
     display: flex;
     background: #16304F;
@@ -73,14 +73,12 @@
     color: #B0C8E0;
   }
 
-  /* ===== MAIN LAYOUT ===== */
   .main-area {
     flex: 1;
     display: flex;
     overflow: hidden;
   }
 
-  /* ===== SIDEBAR ===== */
   .sidebar {
     width: 220px;
     background: #F0F2F7;
@@ -158,7 +156,6 @@
     flex-shrink: 0;
   }
 
-  /* ===== CONTENT AREA ===== */
   .content {
     flex: 1;
     background: #fff;
@@ -265,7 +262,6 @@
     font-weight: 800;
   }
 
-  /* Main script specific */
   .card .script-line {
     display: flex;
     gap: 14px;
@@ -300,7 +296,6 @@
     font-weight: 600;
   }
 
-  /* NEW badge for enhanced content */
   .new-badge {
     display: inline-block;
     background: #FFF3E0;
@@ -314,7 +309,6 @@
     letter-spacing: 0.5px;
   }
 
-  /* Footer reminder bar */
   .footer-bar {
     background: #EEF1F8;
     padding: 10px 20px;
@@ -326,7 +320,6 @@
   }
   .footer-bar strong { color: var(--accent); }
 
-  /* Keyboard hints */
   .kbd-hint {
     position: fixed;
     bottom: 44px;
@@ -349,7 +342,6 @@
     margin: 0 2px;
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .sidebar { width: 60px; }
     .sidebar .section-label { display: none; }
@@ -369,7 +361,6 @@
 <div class="tab-bar">
   <button class="active" onclick="switchTab('main')">Main Script 主稿</button>
   <button onclick="switchTab('followup')">Follow-Up Q&A 追問提示</button>
-  <button onclick="switchTab('extra')">補充 Extra</button>
 </div>
 
 <div class="main-area">
@@ -386,15 +377,15 @@
 </div>
 
 <script>
-// ===== DATA =====
 const NAME_COLORS = {
   Fiona: 'var(--fiona)', Hayden: 'var(--hayden)', Lucas: 'var(--lucas)',
-  Ryan: 'var(--ryan)', Amber: 'var(--amber)', Everyone: 'var(--everyone)',
+  Ryan: 'var(--ryan)', Amber: 'var(--amber)', 'Lucas Hsu': 'var(--lucashsu)',
+  Everyone: 'var(--everyone)',
 };
 
 const mainScriptData = [
   {
-    id: 'm1', num: 'Q1', title: 'Introduction', titleZh: '自我介紹', time: '~40s',
+    id: 'm1', num: 'Q1', title: 'Introduction', titleZh: '自我介紹', time: '~45s',
     catColor: 'var(--primary)',
     lines: [
       { name: 'Fiona', text: 'Hello, we are Team 6677G. Our team has five members. I\'m Fiona. I record our meetings and manage our engineering notebook.' },
@@ -402,13 +393,15 @@ const mainScriptData = [
       { name: 'Lucas', text: 'I\'m Lucas. I design and improve the robot and assist with programming.' },
       { name: 'Ryan', text: 'I\'m Ryan. I help design the robot and plan our World Championship pit.' },
       { name: 'Amber', text: 'I\'m Amber. I work on notebook layout and English translation.' },
+      { name: 'Lucas Hsu', isNew: true, text: 'I\'m Lucas Hsu. I am today\'s translator.' },
     ],
   },
   {
-    id: 'm2', num: 'Q2', title: 'Achievements', titleZh: '本賽季成就', time: '~45s',
+    id: 'm2', num: 'Q2', title: 'Achievements', titleZh: '本賽季成就', time: '~50s',
     catColor: 'var(--primary)',
     lines: [
       { name: 'Amber', text: 'This season, we are proud that our robot\'s scoring ability improved a lot. At the beginning, we could only stack pins. Now we can place a Small Y on the standoff and build three stacks in the triangle goal.' },
+      { name: 'Amber', isNew: true, text: 'Recently, we also improved the claw structure and program, and now we succeeded to grab the starting Pin and stack with it.' },
       { name: 'Fiona', text: 'We also improved our teamwork. This is our first year working together, so we had different ideas. We learned to communicate, share opinions, and vote to make decisions. In the end, we achieved the Teamwork Champion award in Taiwan.' },
     ],
   },
@@ -417,7 +410,7 @@ const mainScriptData = [
     catColor: 'var(--primary)',
     lines: [
       { name: 'Lucas', text: 'One challenge was that our claw could not hold pins stably. We tested different designs, increased friction, and adjusted the program. After many tests, the claw became much more stable.' },
-      { name: 'Lucas', isNew: true, text: 'Another challenge was our hook arm could not lift high enough. We changed the gear ratio from 2.5 to 5 for more torque, and added another motor. Now it can lift above 20 centimeters to place the beam on the standoff.' },
+      { name: 'Lucas', isNew: true, text: 'Another challenge was our hook arm could not lift high enough. We changed the gear ratio from 2.5 to 5 for more torque, and added another motor. We also adjusted the pivot to move it forward and upward so the arm can lift higher. Now it can lift above 27.5 centimeters to place the beam on the standoff.' },
       { name: 'Ryan', text: 'Another problem was scoring in the triangle goal. We changed the guide design, claw angle, and programming. Now we can consistently place three stacks.' },
     ],
   },
@@ -425,61 +418,50 @@ const mainScriptData = [
     id: 'm4', num: 'Q4', title: 'Game Strategy', titleZh: '比賽策略', time: '~70s',
     catColor: 'var(--ryan)',
     lines: [
-      { name: 'Ryan', text: 'First, we study the game rules and scoring system. Then we test different strategies and choose the most stable one.' },
-      { name: 'Ryan', text: 'For teamwork matches, we communicate with our alliance and understand their abilities. We prepared six different game plans and practiced all of them many times.' },
+      { name: 'Ryan', text: 'First, we study the game rules and scoring system. Then we test different strategies and choose the most stable one. For teamwork matches, we communicate with our alliance and understand their abilities. We prepared six different game plans and practiced all of them many times.' },
       { name: 'Ryan', text: 'For example, when our alliance had only a 20% success rate for building a Y, we changed the strategy and took over that task to improve consistency.' },
-      { name: 'Ryan', isNew: true, text: 'For Skills Drive, we split the driving time. The first driver has 35 seconds to finish the Tower Y and Floor Y. The second driver has 25 seconds to stack matches in the center and triangle area.' },
-      { name: 'Ryan', isNew: true, text: 'For Skills Autonomous, we use the rule that lets us pick up the robot by hand. After completing two Ys, we quickly bring the robot back to the start and use the Loader to rapidly stack matches.' },
+      { name: 'Amber', isNew: true, text: 'For Skills Drive, our goal is 291 points. We split the driving time. The first driver has 35 seconds to finish the Tower Y and Floor Y. The second driver has 25 seconds to stack matches in the floor goal and triangle goal.' },
+      { name: 'Amber', isNew: true, text: 'For Skills Autonomous, our goal is 246 points. We use the rule that lets us pick up the robot by hand. After completing two Ys, we quickly bring the robot back to the start and use the Loader to rapidly stack matches.' },
     ],
   },
   {
     id: 'm5', num: 'Q5', title: 'Engineering Design Process', titleZh: '工程設計流程', time: '~55s',
     catColor: 'var(--primary)',
     lines: [
-      { name: 'Hayden', text: 'We follow the engineering design process. First, we identify problems. Then we brainstorm ideas and do research online.' },
-      { name: 'Lucas', text: 'After choosing a solution, we build, test, and improve. Sometimes the design does not work, so we restart and try again. Through many iterations, we developed our fifth-generation robot.' },
+      { name: 'Hayden', isNew: true, text: 'We follow the engineering design process. First, we identify problems and challenge. Then we brainstorm ideas and do research online. For our research, we study competition videos of top teams. For example, learning from Chinese teams and their clutch designs gave us great inspiration!' },
+      { name: 'Lucas', isNew: true, text: 'After choosing a solution, we build, test, and improve. Sometimes the design does not work, so we restart and try again. Step by step, we developed our fifth-generation robot.' },
     ],
   },
   {
-    id: 'm6', num: 'Q6', title: 'Robot Reliability', titleZh: '機器人穩定性', time: '~55s',
+    id: 'm6', num: 'Q6', title: 'Robot Reliability', titleZh: '機器人穩定性', time: '~60s',
     catColor: 'var(--primary)',
     lines: [
-      { name: 'Fiona', text: 'We believe testing is very important. We test our robot many times to find problems. When we find issues, we discuss and improve them. We also check parts and replace batteries regularly. If battery level is below 70%, we change it.' },
-      { name: 'Fiona', isNew: true, text: 'We also discovered that dirty rubber bands reduce friction, so we replace them. For structures that easily crash, we use pin connectors instead of screws to make them stronger. We also added guide angles and position limits to make sure the claw is always in the correct spot.' },
+      { name: 'Fiona', isNew: true, text: 'We believe testing is very important. We test our robot many times to find problems. We discovered that dirty rubber bands reduce friction, so we replace them. For structures that easily crash, we use pin connectors instead of screws to make them stronger. We also added guide angles and position limits to make sure the claw is always in the correct spot.' },
+      { name: 'Fiona', isNew: true, text: 'Because we use omni wheels, the robot may slide left and right in autonomous mode and cause errors. So we added support wheels on the sides to reduce sliding and make autonomous more stable.' },
+      { name: 'Amber', isNew: true, text: 'We also designed a positioning structure to make it much more stable when we place a U-shaped object on a stack of two pins.' },
       { name: 'Amber', text: 'We also use slow-motion video to analyze the robot. This helps us find problems more precisely and improve performance.' },
     ],
   },
   {
-    id: 'm7', num: 'Q7', title: 'Creativity', titleZh: '最具創意的設計', time: '~75s',
+    id: 'm7', num: 'Q7', title: 'Creativity', titleZh: '最具創意的設計', time: '~60s',
     catColor: 'var(--accent)', star: true,
     lines: [
-      { name: 'Amber', text: 'Our most creative design is our PTO clutch system using pneumatics.' },
-      { name: 'Amber', text: 'Because this design our robot has a four-motor drivetrain, it helps reduce speed loss when carrying objects and turning.' },
-      { name: 'Amber', text: 'When the pneumatic shaft extends, it powers the drivetrain. When it retracts, it powers the hook arm.' },
-      { name: 'Amber', text: 'We tested our Gen 4 and Gen 5 robots under different loads. Our Gen 5 is about 14.5% faster. This gives us about 8.7 more seconds in a 60-second run, which helps us score more points.' },
-      { name: 'Lucas', isNew: true, text: 'Besides the clutch, we also designed a U-shaped guide. This positioning structure makes it much more stable and accurate when we place a U-shaped object on a stack of two pins.' },
+      { name: 'Amber', text: 'Our most creative design is our PTO clutch system using pneumatics. Because this design our robot has a four-motor drivetrain, it helps reduce speed loss when carrying objects and turning.' },
+      { name: 'Amber', text: 'When the pneumatic shaft extends, it powers the drivetrain. When it retracts, it powers the hook arm. We tested our Gen 4 and Gen 5 robots under different loads. Our Gen 5 is about 14.5% faster. This gives us about 8.7 more seconds in a 60-second run, which helps us score more points.' },
     ],
   },
   {
     id: 'm8', num: 'Q8', title: 'Programming', titleZh: '程式設計', time: '~70s',
     catColor: 'var(--hayden)',
     lines: [
-      { name: 'Hayden', text: 'For Autonomous, we run a reset routine to ensure consistency every time the robot starts.' },
-      { name: 'Hayden', text: 'We use the Touch LED as a status indicator. A flashing red light means the gyro is calibrating. Using the gyro helps make the robot\'s movement more stable.' },
+      { name: 'Hayden', isNew: true, text: 'In Autonomous mode, we use the gyro go and gyro turn to help our robot\'s movement more accurately and stably.' },
+      { name: 'Hayden', isNew: true, text: 'We also use My Blocks to repeat actions, so we can easily build and control our robot path.' },
       { name: 'Hayden', text: 'We also use a distance sensor to detect the distance between the claw and the pin, which helps with accurate grabbing during Autonomous.' },
-      { name: 'Ryan', isNew: true, text: 'For Driver-Controlled mode, we use "wait until" commands and safety checks to prevent actions from triggering twice.' },
-      { name: 'Ryan', isNew: true, text: 'We also use the Touch LED to help the driver. A green light means the claw is at the lowest position, so we know it is safe to grab the Pin without slipping.' },
-      { name: 'Ryan', isNew: true, text: 'For gyro correction, we subtract the current angle from the target angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
-    ],
-    detailedLines: [
-      { name: 'Hayden', text: 'In Autonomous mode, we use a Touch LED as a safety check before the program starts. We use the gyro to calibrate to make sure all parts return to the correct starting position.' },
-      { name: 'Hayden', text: 'The LED shows red when the robot is still checking. The LED shows green when it is ready to start.' },
-      { name: 'Hayden', text: 'During movement, we use the gyro to help our robot turn and drive more accurately and stably.' },
-      { name: 'Hayden', text: 'We also use My Blocks to repeat actions, so we can easily build and control our robot path.' },
-      { name: 'Ryan', text: 'In Driver-Controlled mode, we use "wait until" so the robot only performs actions when we press a button.' },
-      { name: 'Ryan', text: 'We also add safety checks to prevent repeated actions.' },
-      { name: 'Ryan', text: 'In addition, the Touch LED green light means the claw is at the lowest position, so we can grab the Pin safely.' },
-      { name: 'Ryan', text: 'For gyro correction, we subtract the current angle from the target angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
+      { name: 'Hayden', isNew: true, text: 'We also use a Touch LED as a safety check before the program starts. We use the gyro to calibrate to make sure all parts return to the correct starting position.' },
+      { name: 'Ryan', isNew: true, text: 'The LED shows red when the robot is still checking. The LED shows green when it is ready to start.' },
+      { name: 'Ryan', isNew: true, text: 'In Driver-Controlled mode, we use "wait until" so the robot only performs actions when we press a button.' },
+      { name: 'Ryan', isNew: true, text: 'We also add safety checks to prevent repeated actions.' },
+      { name: 'Ryan', isNew: true, text: 'In addition, the Touch LED green light means the claw is at the lowest position, so we can grab the Pin safely.' },
     ],
   },
   {
@@ -492,9 +474,12 @@ const mainScriptData = [
     ],
   },
   {
-    id: 'm10', num: 'Q10', title: 'Closing', titleZh: '結語', time: '~20s',
+    id: 'm10', num: 'Q10', title: 'Closing', titleZh: '結語＋補充', time: '~90s',
     catColor: 'var(--fiona)',
     lines: [
+      { name: 'Amber', isNew: true, text: 'I want to add about our robot design and improvements. We added a guide under the claw to help stack Pins more easily. But a fixed guide caused problems when placing high towers or in the triangle goal. So we changed it to a pneumatic guide that can open and close.' },
+      { name: 'Lucas', isNew: true, text: 'When we flip 180 degrees or lift three Pins, we found that resistance increases and makes it harder to reach our target angle. So we added rubber bands to provide extra force and help the robot move better.' },
+      { name: 'Hayden', isNew: true, text: 'I want to add about our programming. For gyro correction, we subtract the current angle from the target angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
       { name: 'Fiona', text: 'Thank you for listening. We are proud of our teamwork, continuous improvement, and engineering process.' },
     ],
   },
@@ -523,57 +508,15 @@ const followUpData = [
   { id: 'f20', num: 'Q20', category: 'Closing', catColor: 'var(--primary)', question: 'What makes your team special?', who: 'Everyone', answer: 'Our team is special because we keep improving and never give up. We test a lot, learn from failure, and work well together. That is how we built our current robot.', key: 'Improve + Never give up + Teamwork' },
 ];
 
-const extraData = [
-  {
-    id: 'e1', num: 'S1', title: 'Hook Arm', titleZh: '機構補充① — Hook Arm', time: '',
-    catColor: 'var(--lucas)',
-    lines: [
-      { name: 'Lucas', text: 'I want to add about our robot design and improvements.', zh: '我想補充關於機構設計和改善。' },
-      { name: 'Lucas', text: 'About Hook Arm — We changed the gear ratio from 2.5 to 5 to make more power and stronger lifting.', zh: '關於 Hook Arm — 齒輪比從 2.5 倍減速改成 5 倍減速，把扭力加大，讓舉升更有力。' },
-      { name: 'Lucas', text: 'We also adjusted the pivot so the arm can lift higher.', zh: '我們也調整了支點，讓手臂可以舉得更高。' },
-      { name: 'Lucas', text: 'We improved the hook design so it can hold the Beam more tightly.', zh: '我們改善了 Hook 的機構，讓它可以夾住 Beam 更深、夾得更緊。' },
-      { name: 'Lucas', text: 'Now we can place a small Y on the Standoff more stably.', zh: '現在我們可以更穩定地把小 Y 放到 Standoff 上面。' },
-    ],
-  },
-  {
-    id: 'e2', num: 'S2', title: 'Guide & Positioning', titleZh: '機構補充② — 導角和定位', time: '',
-    catColor: 'var(--lucas)',
-    lines: [
-      { name: 'Lucas', text: 'We also designed guides and a positioning structure to make stacking Y more stable.', zh: '我們還設計了導角和定位機構，讓疊 Y 的時候更穩定。' },
-      { name: 'Lucas', text: 'The lower guide helps us grab Pins faster.', zh: '下方的 Pin 導角設計，讓我們可以更快速地夾到 Pin。' },
-    ],
-  },
-  {
-    id: 'e3', num: 'S3', title: 'Pin Arm', titleZh: '機構補充③ — Pin Arm', time: '',
-    catColor: 'var(--lucas)',
-    lines: [
-      { name: 'Lucas', text: 'About Pin Arm — We improved the arm and claw, so now it can flip 4 Pins instead of 2.', zh: '關於 Pin Arm — 我們修改了手臂和爪子的結構，讓 Pin Arm 原本 180 度只能翻 2 個 Pins，現在可以翻 4 個，效率更高。' },
-      { name: 'Lucas', text: 'We adjusted the pivot, so it can lift higher and place a Pin on the Standoff.', zh: '調整支點讓 Pin Arm 可以舉更高，可以高舉放一個 Pin 到 Standoff 上面。' },
-      { name: 'Lucas', text: 'We also improved the back structure and program, so we can grab the starting Pin and stack it smoothly.', zh: '加爪子後面的結構和調整程式，可以順利夾 Starting Pin 並進行堆疊。' },
-    ],
-  },
-  {
-    id: 'e4', num: 'S4', title: 'Programming (Extra)', titleZh: '程式補充', time: '',
-    catColor: 'var(--hayden)',
-    lines: [
-      { name: 'Hayden', text: 'I also want to add about our programming.', zh: '我想補充關於程式的部分。' },
-      { name: 'Hayden', text: 'We tried using a distance sensor before, but our claw is too high, so it cannot see the top of the Pin clearly.', zh: '我們原先有試過距離感應器，但因為爪子結構較高，會導致感應器照不到 Pin 頂端一部分。' },
-      { name: 'Hayden', text: 'This made it unstable, so we changed our design.', zh: '所以感應器會很不穩定，因此我們調整了設計方式。' },
-    ],
-  },
-];
-
 // ===== STATE =====
 let currentTab = 'main';
 let currentIndex = 0;
 
 function getData() {
   if (currentTab === 'main') return mainScriptData;
-  if (currentTab === 'followup') return followUpData;
-  return extraData;
+  return followUpData;
 }
 
-// ===== RENDER SIDEBAR =====
 function renderSidebar() {
   const sidebar = document.getElementById('sidebar');
   const data = getData();
@@ -591,17 +534,7 @@ function renderSidebar() {
         ${starHtml}
       </button>`;
     });
-  } else if (currentTab === 'extra') {
-    html += '<div class="section-label">補充 Extra</div>';
-    data.forEach((item, i) => {
-      const active = i === currentIndex ? ' active' : '';
-      html += `<button class="${active}" onclick="goTo(${i})">
-        <span class="num" style="background:${item.catColor}">${item.num}</span>
-        ${item.title}
-      </button>`;
-    });
   } else {
-    // Group by category
     const categories = [];
     data.forEach((item, i) => {
       if (item.category !== lastCat) {
@@ -612,7 +545,6 @@ function renderSidebar() {
     categories.forEach(cat => {
       html += `<div class="section-label">${cat.label}</div>`;
       data.forEach((item, i) => {
-        if (item.category !== cat.label && !(cat.label === data[cat.startIdx].category)) return;
         if (item.category === cat.label) {
           const active = i === currentIndex ? ' active' : '';
           const trapHtml = item.trap ? '<span class="trap-badge">TRAP</span>' : '';
@@ -629,7 +561,6 @@ function renderSidebar() {
   sidebar.innerHTML = html;
 }
 
-// ===== RENDER CONTENT =====
 function renderContent() {
   const content = document.getElementById('content');
   const data = getData();
@@ -637,23 +568,6 @@ function renderContent() {
   let html = '';
 
   if (currentTab === 'main') {
-    const detailedSection = item.detailedLines ? `
-      <div style="margin-top:28px;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-          <div style="flex:1;height:1px;background:#E8ECF2;"></div>
-          <span style="font-size:11px;font-weight:700;color:#999;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;">詳細版 Full Version</span>
-          <div style="flex:1;height:1px;background:#E8ECF2;"></div>
-        </div>
-        <div style="background:#F5F8FF;border:1px solid #D0DCEE;border-radius:10px;padding:20px 24px;">
-          ${item.detailedLines.map(l => `
-            <div class="script-line">
-              <span class="script-name" style="background:${NAME_COLORS[l.name]}">${l.name}</span>
-              <span class="script-text">${l.text}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>` : '';
-
     html = `<div class="card active">
       <span class="category-badge" style="background:${item.catColor}">${item.num} &mdash; ${item.titleZh}</span>
       ${item.star ? '<span class="trap-warning" style="background:var(--accent);animation:none">KEY SLIDE</span>' : ''}
@@ -664,22 +578,6 @@ function renderContent() {
         <div class="script-line">
           <span class="script-name" style="background:${NAME_COLORS[l.name]}">${l.isNew ? '<span class="new-badge">NEW</span>' : ''}${l.name}</span>
           <span class="script-text">${l.text}</span>
-        </div>
-      `).join('')}
-      ${detailedSection}
-    </div>`;
-  } else if (currentTab === 'extra') {
-    html = `<div class="card active">
-      <span class="category-badge" style="background:${item.catColor}">${item.num} &mdash; ${item.titleZh}</span>
-      <h1 class="question" style="margin-top:14px">${item.title}</h1>
-      <div style="border-bottom:1px solid #E8ECF2;margin-bottom:24px"></div>
-      ${item.lines.map(l => `
-        <div class="script-line">
-          <span class="script-name" style="background:${NAME_COLORS[l.name]}">${l.name}</span>
-          <span class="script-text">
-            ${l.text}
-            ${l.zh ? `<span style="display:block;margin-top:5px;font-size:15px;color:#888;font-weight:400;">${l.zh}</span>` : ''}
-          </span>
         </div>
       `).join('')}
     </div>`;
@@ -706,13 +604,11 @@ function renderContent() {
   content.innerHTML = html;
 }
 
-// ===== NAVIGATION =====
 function goTo(index) {
   const data = getData();
   currentIndex = Math.max(0, Math.min(index, data.length - 1));
   renderSidebar();
   renderContent();
-  // Scroll sidebar active button into view
   const activeBtn = document.querySelector('.sidebar button.active');
   if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
@@ -720,20 +616,17 @@ function goTo(index) {
 function switchTab(tab) {
   currentTab = tab;
   currentIndex = 0;
-  // Update tab buttons
   document.querySelectorAll('.tab-bar button').forEach(btn => {
     const t = btn.textContent;
     btn.classList.toggle('active',
       (tab === 'main' && t.includes('Main')) ||
-      (tab === 'followup' && t.includes('Follow')) ||
-      (tab === 'extra' && t.includes('補充'))
+      (tab === 'followup' && t.includes('Follow'))
     );
   });
   renderSidebar();
   renderContent();
 }
 
-// ===== KEYBOARD SHORTCUTS =====
 document.addEventListener('keydown', (e) => {
   const data = getData();
   if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
@@ -749,11 +642,10 @@ document.addEventListener('keydown', (e) => {
     const idx = parseInt(e.key) - 1;
     if (idx < data.length) goTo(idx);
   } else if (e.key === '0') {
-    goTo(9); // Q10
+    goTo(9);
   }
 });
 
-// ===== INIT =====
 renderSidebar();
 renderContent();
 </script>
