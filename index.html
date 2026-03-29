@@ -280,6 +280,18 @@
     margin-left: 12px;
     font-weight: 600;
   }
+  mark {
+    background: #FFE566;
+    color: inherit;
+    padding: 1px 3px;
+    border-radius: 3px;
+  }
+  mark.red {
+    background: #FF69B4;
+    color: inherit;
+    padding: 1px 3px;
+    border-radius: 3px;
+  }
   .new-badge {
     display: inline-block;
     background: #FFF3E0;
@@ -335,9 +347,34 @@
     .card .script-text { font-size: 17px; }
     .card .key-value { font-size: 20px; }
   }
+  .legend {
+    position: fixed;
+    top: 54px;
+    right: 16px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #D8DCE6;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    line-height: 2;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .legend-dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
 </style>
 </head>
 <body>
+<div class="legend">
+  <span class="legend-dot" style="background:#FFE566"></span>記得加動作<br>
+  <span class="legend-dot" style="background:#FF69B4"></span>放慢語調．加強重音
+</div>
 <div class="tab-bar">
   <button class="active" onclick="switchTab('main')">Main Script 主稿</button>
   <button onclick="switchTab('followup')">Follow-Up Q&A 追問提示</button>
@@ -375,9 +412,9 @@ const mainScriptData = [
     id: 'm2', num: 'Q2', title: 'Achievements', titleZh: '本賽季成就', time: '~50s',
     catColor: 'var(--primary)',
     lines: [
-      { name: 'Amber', text: 'This season, we are proud that our robot\'s scoring ability improved a lot. At the beginning, we could only stack pins. Now we can place a Small Y on the standoff and build three stacks in the triangle goal.' },
-      { name: 'Amber', isNew: true, text: 'Recently, we also improved the claw structure and program, and now we succeeded to grab the starting Pin and stack with it.' },
-      { name: 'Fiona', text: 'We also improved our teamwork. This is our first year working together, so we had different ideas. We learned to communicate, share opinions, and vote to make decisions. In the end, we achieved the Teamwork Champion award in Taiwan.' },
+      { name: 'Amber', text: 'This season, we are proud that our robot\'s scoring ability improved a lot. At the beginning, we could only <mark>stack pins</mark>. Now we can place a <mark>Small Y on the standoff</mark> and build three stacks in the <mark>triangle goal.</mark>' },
+      { name: 'Amber', isNew: true, text: 'Recently, we also improved the claw structure and program, and now we succeeded to grab the <mark>starting Pin</mark> and <mark>stack with it.</mark>' },
+      { name: 'Fiona', text: 'We also improved our teamwork. This is our first year working together, so we had different ideas. We learned to communicate, share opinions, and vote to make decisions. In the end, we <mark class="red">achieved the Teamwork Champion award in Taiwan.</mark>' },
     ],
   },
   {
@@ -385,7 +422,7 @@ const mainScriptData = [
     catColor: 'var(--primary)',
     lines: [
       { name: 'Lucas', text: 'One challenge was that our claw could not hold pins stably. We tested different designs, increased friction, and adjusted the program. After many tests, the claw became much more stable.' },
-      { name: 'Lucas', isNew: true, text: 'Another challenge was our hook arm could not lift high enough. We changed the gear ratio from 2.5 to 5 for more torque, and added another motor. We also adjusted the pivot to move it forward and upward so the arm can lift higher. Now it can lift above 27.5 centimeters to place the beam on the standoff.' },
+      { name: 'Lucas', isNew: true, text: 'Another challenge was our hook arm could not lift high enough. We changed the <mark class="red">gear ratio from 2.5 to 5 for more torque</mark>, and added another motor. We also adjusted the pivot to move it forward and upward so the arm can lift higher. Now it can lift above <mark class="red">27.5 centimeters</mark> to <mark>place the beam on the standoff.</mark>' },
       { name: 'Ryan', text: 'Another problem was scoring in the triangle goal. We changed the guide design, claw angle, and programming. Now we can consistently place three stacks.' },
     ],
   },
@@ -393,18 +430,18 @@ const mainScriptData = [
     id: 'm4', num: 'Q4', title: 'Game Strategy', titleZh: '比賽策略', time: '~70s',
     catColor: 'var(--ryan)',
     lines: [
-      { name: 'Ryan', text: 'First, we study the game rules and scoring system. Then we test different strategies and choose the most stable one. For teamwork matches, we communicate with our alliance and understand their abilities. We prepared six different game plans and practiced all of them many times.' },
-      { name: 'Ryan', text: 'For example, when our alliance had only a 20% success rate for building a Y, we changed the strategy and took over that task to improve consistency.' },
-      { name: 'Amber', isNew: true, text: 'For Skills Drive, our goal is 291 points. We split the driving time. The first driver has 35 seconds to finish the Standoff Y and Y. The second driver has 25 seconds to stack matches in the floor goal and triangle goal.' },
-      { name: 'Amber', isNew: true, text: 'For Skills Autonomous, our goal is 246 points. We use the rule that lets us pick up the robot by hand. After completing two Ys, we quickly bring the robot back to the start and use the Loader to rapidly stack matches.' },
+      { name: 'Ryan', text: 'First, we study the game rules and scoring system. Then we test different strategies and choose the most stable one. For teamwork matches, we <mark class="red">communicate with our alliance</mark> and understand their abilities. We prepared <mark class="red">six</mark> different game plans and practiced all of them many times.' },
+      { name: 'Ryan', text: 'For example, when our alliance had only a 20% success rate for <mark>building a Y,</mark> we changed the strategy and took over that task to improve consistency.' },
+      { name: 'Amber', isNew: true, text: 'For Skills Drive, our goal is <mark class="red">291 points</mark>. We split the driving time. The first driver has 35 seconds to finish the <mark>Standoff Y</mark> and <mark>Y.</mark> The second driver has 25 seconds to stack matches in the <mark>floor goal</mark> and <mark>triangle goal</mark>.' },
+      { name: 'Amber', isNew: true, text: 'For Skills Autonomous, our goal is <mark class="red">246 points</mark>. We use the rule that lets us pick up the robot by hand. After completing two Ys, we quickly bring the robot back to the start and use the Loader to rapidly stack matches.' },
     ],
   },
   {
     id: 'm5', num: 'Q5', title: 'Engineering Design Process', titleZh: '工程設計流程', time: '~55s',
     catColor: 'var(--primary)',
     lines: [
-      { name: 'Hayden', isNew: true, text: 'We follow the engineering design process. First, we identify problems and challenge. Then we brainstorm ideas and do research online. For our research, we study competition videos of top teams. For example, learning from Chinese teams and their clutch designs gave us great inspiration!' },
-      { name: 'Lucas', isNew: true, text: 'After choosing a solution, we build, test, and improve. Sometimes the design does not work, so we restart and try again. Step by step, we developed our fifth-generation robot.' },
+      { name: 'Hayden', isNew: true, text: 'We follow the engineering design process. First, we <mark class="red">identify problems</mark> and <mark class="red">challenges</mark>. Then we <mark class="red">brainstorm</mark> ideas and do research online. For our research, we study competition videos of top teams. For example, learning from Chinese teams and their clutch designs gave us great inspiration!' },
+      { name: 'Lucas', isNew: true, text: 'After choosing a solution, we <mark class="red">build, test, and improve</mark>. Sometimes the design does not work, so we restart and try again. Step by step, we developed our fifth-generation robot.' },
     ],
   },
   {
@@ -412,8 +449,8 @@ const mainScriptData = [
     catColor: 'var(--primary)',
     lines: [
       { name: 'Fiona', isNew: true, text: 'We believe testing is very important. We test our robot many times to find problems. We discovered that dirty rubber bands reduce friction, so we replace them. For structures that easily crash, we use pin connectors instead of screws to make them stronger. We also added guide angles and position limits to make sure the claw is always in the correct spot.' },
-      { name: 'Fiona', isNew: true, text: 'Because we use omni wheels, the robot may slide left and right in autonomous mode and cause errors. So we added non-slide wheels on the sides to reduce sliding and make autonomous more stable.' },
-      { name: 'Amber', isNew: true, text: 'We also designed a positioning structure to make it much more stable when we place a U-shaped object on a stack of two pins.' },
+      { name: 'Fiona', isNew: true, text: 'Because we use omni wheels, the robot may slide left and right in autonomous mode and cause errors. So we added <mark>non-slide wheels</mark> on the sides to reduce sliding and make autonomous more stable.' },
+      { name: 'Amber', isNew: true, text: 'We also designed a <mark>positioning structure</mark> to make it much more stable when we place a <mark>U-shaped object on a stack of two pins.</mark>' },
       { name: 'Amber', text: 'We also use slow-motion video to analyze the robot. This helps us find problems more precisely and improve performance.' },
     ],
   },
@@ -421,22 +458,22 @@ const mainScriptData = [
     id: 'm7', num: 'Q7', title: 'Creativity', titleZh: '最具創意的設計', time: '~60s',
     catColor: 'var(--accent)', star: true,
     lines: [
-      { name: 'Amber', text: 'Our most creative design is our PTO clutch system using pneumatics. Because this design our robot has a four-motor drivetrain, it helps reduce speed loss when carrying objects and turning.' },
-      { name: 'Amber', text: 'When the pneumatic shaft extends, it powers the drivetrain. When it retracts, it powers the hook arm. We tested our Gen 4 and Gen 5 robots under different loads. Our Gen 5 is about 14.5% faster. This gives us about 8.7 more seconds in a 60-second run, which helps us score more points.' },
+      { name: 'Amber', text: 'Our most creative design is our <mark class="red">PTO clutch system</mark> using pneumatics. Because this design our robot has a <mark class="red">four-motor drivetrain</mark>, it helps reduce speed loss when carrying objects and turning.' },
+      { name: 'Amber', text: 'When the pneumatic <mark>shaft extends</mark>, it powers the drivetrain. When it <mark>retracts, it</mark> powers the hook arm. We tested our Gen 4 and Gen 5 robots under different <mark>loads</mark>. Our Gen 5 is about 14.5% faster. This <mark class="red">gives us about 8.7 more seconds</mark> in a 60-second run, which helps us score more points.' },
     ],
   },
   {
     id: 'm8', num: 'Q8', title: 'Programming', titleZh: '程式設計', time: '~70s',
     catColor: 'var(--hayden)',
     lines: [
-      { name: 'Hayden', isNew: true, text: 'In Autonomous mode, we use the gyro go and gyro turn to help our robot\'s movement more accurately and stably.' },
-      { name: 'Hayden', isNew: true, text: 'We also use My Blocks to repeat actions, so we can easily build and control our robot path.' },
-      { name: 'Hayden', text: 'We also use a distance sensor to detect the distance between the claw and the pin, which helps with accurate grabbing during Autonomous.' },
-      { name: 'Hayden', isNew: true, text: 'We also use a Touch LED as a safety check before the program starts. We use the gyro to calibrate to make sure all parts return to the correct starting position.' },
+      { name: 'Hayden', isNew: true, text: 'In Autonomous mode, we use the <mark class="red">gyro go</mark> and <mark class="red">gyro turn</mark> to help our robot\'s movement more accurately and stably.' },
+      { name: 'Hayden', isNew: true, text: 'We also use <mark class="red">My Blocks</mark> to repeat actions, so we can easily build and control our robot path.' },
+      { name: 'Hayden', text: 'We also use a <mark>distance sensor</mark> to detect the distance between the claw and the pin, which helps with accurate grabbing during Autonomous.' },
+      { name: 'Hayden', isNew: true, text: 'We also use a <mark>Touch LED</mark> as a safety check before the program starts. We use the gyro to calibrate to make sure all parts return to the correct starting position.' },
       { name: 'Ryan', isNew: true, text: 'The LED shows red when the robot is still checking. The LED shows green when it is ready to start.' },
-      { name: 'Ryan', isNew: true, text: 'In Driver-Controlled mode, we use "wait until" so the robot only performs actions when we press a button.' },
-      { name: 'Ryan', isNew: true, text: 'We also add safety checks to prevent repeated actions.' },
-      { name: 'Ryan', isNew: true, text: 'In addition, the Touch LED green light means the claw is at the lowest position, so we can grab the Pin safely.' },
+      { name: 'Ryan', isNew: true, text: 'In Driver-Controlled mode, we use "<mark class="red">wait until</mark>" so the robot only performs actions when we press a button.' },
+      { name: 'Ryan', isNew: true, text: 'We also add <mark class="red">safety checks</mark> to prevent repeated actions.' },
+      { name: 'Ryan', isNew: true, text: 'In addition, the <mark class="red">Touch LED</mark> green light means the claw is at the lowest position, so we can grab the Pin safely.' },
     ],
   },
   {
@@ -452,8 +489,8 @@ const mainScriptData = [
     id: 'm10', num: 'Q10', title: 'Closing', titleZh: '結語＋補充', time: '~90s',
     catColor: 'var(--fiona)',
     lines: [
-      { name: 'Amber', isNew: true, text: 'I want to add about our robot design and improvements. We added a guide under the claw to help stack Pins more easily. But a fixed guide caused problems when placing high towers or in the triangle goal. So we changed it to a pneumatic guide that can lift up and down.' },
-      { name: 'Lucas', isNew: true, text: 'When we flip 180 degrees or lift three Pins, we found that resistance increases and makes it harder to reach our target angle. So we added rubber bands to provide extra force and help the robot move better.' },
+      { name: 'Amber', isNew: true, text: 'I want to add about our robot design and improvements. We added a guide under the claw to help stack Pins more easily. But a fixed guide caused problems when placing high towers or in the triangle goal. So we changed it to a pneumatic guide that can <mark>lift up and down.</mark>' },
+      { name: 'Lucas', isNew: true, text: 'When we flip 180 degrees or lift three Pins, we found that resistance increases and makes it harder to reach our target angle. So we added <mark>rubber bands</mark> to provide extra force and help the robot move better.' },
       { name: 'Hayden', isNew: true, text: 'I want to add about our programming. For gyro correction, we subtract the target angle from the current angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
       { name: 'Fiona', text: 'Thank you for listening. We are proud of our teamwork, continuous improvement, and engineering process.' },
     ],
