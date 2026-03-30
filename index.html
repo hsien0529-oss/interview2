@@ -491,8 +491,18 @@ const mainScriptData = [
     lines: [
       { name: 'Amber', isNew: true, text: 'I want to add about our robot design and improvements. We added a guide under the claw to help stack Pins more easily. But a fixed guide caused problems when placing high towers or in the triangle goal. So we changed it to a pneumatic guide that can <mark>lift up and down.</mark>' },
       { name: 'Lucas', isNew: true, text: 'When we flip 180 degrees or lift three Pins, we found that resistance increases and makes it harder to reach our target angle. So we added <mark>rubber bands</mark> to provide extra force and help the robot move better.' },
-      { name: 'Hayden', isNew: true, text: 'I want to add about our programming. For gyro correction, we subtract the target angle from the current angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
+      { name: 'Ryan', isNew: true, text: 'I want to add about our programming. For gyro correction, we subtract the target angle from the current angle to get the error. Then we adjust the left and right motor power to make the robot turn more accurately.' },
       { name: 'Fiona', text: 'Thank you for listening. We are proud of our teamwork, continuous improvement, and engineering process.' },
+    ],
+  },
+  {
+    id: 'm11', num: 'Q11', title: 'Remote Control FSM', titleZh: '遙控程式補充', time: '~30s',
+    catColor: 'var(--hayden)',
+    lines: [
+      { name: 'Hayden', isNew: true, text: '<span style="color:#888;font-size:16px">（中文）我想補充我們遙控的設計，因為遙控器的按鍵數量有限，但機器人需要完成很多不同的功能，所以我們使用了「有限狀態機（Finite State Machine）」的設計。</span>' },
+      { name: 'Lucas Hsu', isNew: true, text: 'I\'d like to add about our remote control programming. Because the controller has limited buttons but our robot needs to do many functions, we used a <mark class="red">Finite State Machine</mark>.' },
+      { name: 'Hayden', isNew: true, text: '<span style="color:#888;font-size:16px">（中文）我們讓同一個按鍵可以切換不同的狀態，並用一個變數來記錄目前機器人的狀態。每按一次按鍵，狀態就會改變，機器人也會執行對應的動作，例如夾或放、舉或降。</span>' },
+      { name: 'Lucas Hsu', isNew: true, text: 'We let one button switch between different states and used a <mark>variable</mark> to track the current state. Each time we press the button, the state changes, and the robot performs different actions, like <mark>grab or release</mark>, <mark>lift or lower</mark>.' },
     ],
   },
 ];
